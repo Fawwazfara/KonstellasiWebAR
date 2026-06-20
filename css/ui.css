@@ -143,58 +143,66 @@ a-scene {
 }
 
 /* =================================================================
-   INFO CARD — Panel edukasi per rasi bintang
-   Muncul di bawah info-panel, fade-in saat rasi aktif berubah
+   INFO CARD — Panel edukasi per rasi bintang (Bottom Sheet)
 ================================================================= */
 #edu-card {
   position: fixed;
-  bottom: 48px;
-  left: 16px;
-  right: 16px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   z-index: 200;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 14px 16px;
+  background: rgba(10, 14, 42, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px 24px 0 0;
+  padding: 12px 24px 24px 24px;
   font-family: sans-serif;
   color: #fff;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  max-width: 420px;
-  margin: 0 auto;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 #edu-card.visible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.edu-drag-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin: 0 auto 12px auto;
 }
 
 #edu-card .edu-nama {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 2px;
 }
 
 #edu-card .edu-arti {
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
   font-style: italic;
 }
 
 #edu-card .edu-row {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 12px;
+  margin-bottom: 0;
 }
 
 #edu-card .edu-item {
   background: rgba(255,255,255,0.07);
-  border-radius: 8px;
-  padding: 7px 10px;
+  border-radius: 12px;
+  padding: 10px 12px;
   flex: 1;
 }
 
@@ -204,28 +212,59 @@ a-scene {
   color: rgba(255,255,255,0.45);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 #edu-card .edu-item-value {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: #fff;
 }
 
+.edu-extended-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+#edu-card.expanded .edu-extended-content {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
 #edu-card .edu-fakta {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
-  color: rgba(200, 220, 255, 0.8);
+  color: rgba(200, 220, 255, 0.9);
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 8px;
-  margin-top: 2px;
+  padding-top: 12px;
+  margin-bottom: 16px;
 }
 
 #edu-card .edu-fakta::before {
   content: "✦ ";
   opacity: 0.6;
+}
+
+.edu-btn-link {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg,#7ec8ff,#b8a0ff);
+  color: #0a0e2a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(126,200,255,0.3);
+  transition: transform 0.2s ease;
+}
+
+.edu-btn-link:active {
+  transform: scale(0.97);
 }
 
 /* =================================================================
@@ -381,7 +420,7 @@ a-scene {
 
 #btn-nightvision {
   position: fixed;
-  bottom: 16px;
+  top: 110px;
   right: 16px;
   z-index: 200;
   font-family: sans-serif;
@@ -426,4 +465,130 @@ a-scene {
   color: #00ff64;
   box-shadow: 0 0 10px rgba(0, 255, 100, 0.3);
   background: rgba(0, 25, 5, 0.6);
+}
+
+/* ── Mode Nusantara Toggle ────────────────────────────────────── */
+#btn-nusantara {
+  position: fixed;
+  top: 160px;
+  right: 16px;
+  z-index: 200;
+  font-family: sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(10, 14, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 10px 18px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#btn-nusantara.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#btn-nusantara:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+#btn-nusantara.active {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.6);
+  color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* ── Star Info Modal ────────────────────────────────────────── */
+#star-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#star-modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.star-modal-content {
+  background: linear-gradient(145deg, #111a3a, #0a0e2a);
+  border: 1px solid rgba(126, 200, 255, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  width: 85%;
+  max-width: 340px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  color: #fff;
+  font-family: sans-serif;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#star-modal.visible .star-modal-content {
+  transform: scale(1);
+}
+
+.star-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  line-height: 1;
+}
+
+#sm-nama {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #7ec8ff;
+}
+
+.sm-subtitle {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.sm-divider {
+  border: none;
+  border-top: 1px solid rgba(126, 200, 255, 0.2);
+  margin: 12px 0;
+}
+
+.sm-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.sm-lbl {
+  color: rgba(255,255,255,0.5);
+}
+
+.sm-val {
+  font-weight: 600;
+  color: #fff;
 }

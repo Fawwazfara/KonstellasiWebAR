@@ -49,7 +49,9 @@
       position="0 0 0"
       look-controls="magicWindowTrackingEnabled: true; touchEnabled: false; mouseEnabled: false"
       wasd-controls="enabled: false"
-    ></a-camera>
+    >
+      <a-entity cursor="rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
+    </a-camera>
 
     <!-- Rasi Bintang -->
     <a-entity id="obj-sagittarius" position="2.5 4 7.6" rotation="0 162 0" visible="true">
@@ -58,9 +60,9 @@
         animation="property: position; from: 0 -0.3 0; to: 0 0.3 0;
                    dur: 4200; easing: easeInOutSine; loop: true; dir: alternate">
       </a-image>
-      <a-text value="Kaus Australis" position="1.5 0.8 0"
+      <a-text class="clickable" data-star="kaus-australis" value="Kaus Australis" position="1.5 0.8 0"
         color="#FFD700" width="1.8" align="left" opacity="0.75"></a-text>
-      <a-text value="Nunki" position="-0.5 1.2 0"
+      <a-text class="clickable" data-star="nunki" value="Nunki" position="-0.5 1.2 0"
         color="#FFD700" width="1.6" align="left" opacity="0.75"></a-text>
     </a-entity>
 
@@ -70,9 +72,9 @@
         animation="property: position; from: 0 -0.3 0; to: 0 0.3 0;
                    dur: 3800; easing: easeInOutSine; loop: true; dir: alternate">
       </a-image>
-      <a-text value="Betelgeuse" position="0 1.2 1.5"
+      <a-text class="clickable" data-star="betelgeuse" value="Betelgeuse" position="0 1.2 1.5"
         color="#FF9977" width="1.8" align="left" opacity="0.75"></a-text>
-      <a-text value="Rigel" position="0 -0.8 1.5"
+      <a-text class="clickable" data-star="rigel" value="Rigel" position="0 -0.8 1.5"
         color="#CCE5FF" width="1.6" align="left" opacity="0.75"></a-text>
     </a-entity>
 
@@ -82,7 +84,7 @@
         animation="property: position; from: 0 -0.3 0; to: 0 0.3 0;
                    dur: 4600; easing: easeInOutSine; loop: true; dir: alternate">
       </a-image>
-      <a-text value="Antares" position="0 1.0 0.5"
+      <a-text class="clickable" data-star="antares" value="Antares" position="0 1.0 0.5"
         color="#FF4422" width="1.8" align="left" opacity="0.75"></a-text>
     </a-entity>
 
@@ -92,9 +94,9 @@
         animation="property: position; from: 0 -0.3 0; to: 0 0.3 0;
                    dur: 5000; easing: easeInOutSine; loop: true; dir: alternate">
       </a-image>
-      <a-text value="Acrux" position="0.5 1.5 0"
+      <a-text class="clickable" data-star="acrux" value="Acrux" position="0.5 1.5 0"
         color="#CCE8FF" width="1.6" align="left" opacity="0.75"></a-text>
-      <a-text value="Gacrux" position="-0.5 0.2 0"
+      <a-text class="clickable" data-star="gacrux" value="Gacrux" position="-0.5 0.2 0"
         color="#CCE8FF" width="1.5" align="left" opacity="0.75"></a-text>
     </a-entity>
 
@@ -149,8 +151,31 @@
     <div class="radar-pointer">✦</div>
   </div>
 
-  <!-- Tombol Toggle Teropong Malam -->
+  <!-- Tombol Toggle Teropong Malam & Mode Nusantara -->
   <button id="btn-nightvision">✦ Mode Teropong</button>
+  <button id="btn-nusantara">✦ Mode Nusantara</button>
+
+  <!-- Modal Informasi Bintang -->
+  <div id="star-modal">
+    <div class="star-modal-content">
+      <div class="star-modal-close" id="btn-close-star">×</div>
+      <h2 id="sm-nama">Nama Bintang</h2>
+      <div id="sm-tipe" class="sm-subtitle">Tipe Spektrum</div>
+      <hr class="sm-divider">
+      <div class="sm-row">
+        <span class="sm-lbl">Suhu Permukaan</span>
+        <span id="sm-suhu" class="sm-val">—</span>
+      </div>
+      <div class="sm-row">
+        <span class="sm-lbl">Massa Relatif</span>
+        <span id="sm-massa" class="sm-val">—</span>
+      </div>
+      <div class="sm-row">
+        <span class="sm-lbl">Jarak dari Bumi</span>
+        <span id="sm-jarak" class="sm-val">—</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Landing Page -->
   <div id="landing-page">

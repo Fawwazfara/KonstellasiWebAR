@@ -9,41 +9,98 @@ const NAMA_BULAN = [
 ];
 
 /* -----------------------------------------------------------------
-   DATA EDUKASI per rasi bintang
+   DATA EDUKASI per rasi bintang (Standar & Nusantara)
 ----------------------------------------------------------------- */
 const DATA_EDUKASI = {
   'obj-sagittarius': {
-    nama:    'Sagittarius',
-    arti:    'Pemanah — dari bahasa Latin',
-    bintang: '8 bintang utama',
-    jarak:   '143 thn cahaya',
-    fakta:   'Pusat Galaksi Bimasakti berada tepat di arah rasi ini',
-    warna:   '#FFD700'
+    warna:   '#FFD700',
+    standar: {
+      nama:    'Sagittarius',
+      arti:    'Pemanah — dari bahasa Latin',
+      bintang: '8 bintang utama',
+      jarak:   '143 thn cahaya',
+      fakta:   'Pusat Galaksi Bimasakti berada tepat di arah rasi ini',
+      link:    'https://noirlab-edu.translate.goog/public/education/constellations/sagittarius/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
+    },
+    nusantara: {
+      nama:    'Wulan Jarit',
+      arti:    'Pemanah — Mitologi Hindu-Jawa',
+      bintang: '8 bintang utama',
+      jarak:   '143 thn cahaya',
+      fakta:   'Digunakan sebagai penanda arah pusat galaksi Bima Sakti (Milky Way).',
+      link:    'https://www.cangkeman.id/2023/03/mengenal-rasi-bintang-dalam-astronomi.html?utm_source=chatgpt.com'
+    }
   },
   'obj-scorpius': {
-    nama:    'Scorpius',
-    arti:    'Kalajengking',
-    bintang: '18 bintang utama',
-    jarak:   '550 thn cahaya (Antares)',
-    fakta:   'Antares, bintang paling terang di rasi ini, 700× lebih besar dari Matahari',
-    warna:   '#FF7744'
+    warna:   '#FF7744',
+    standar: {
+      nama:    'Scorpius',
+      arti:    'Kalajengking',
+      bintang: '18 bintang utama',
+      jarak:   '550 thn cahaya (Antares)',
+      fakta:   'Antares, bintang paling terang di rasi ini, 700× lebih besar dari Matahari',
+      link:    'https://encyclopedia-pub.translate.goog/entry/56294?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
+    },
+    nusantara: {
+      nama:    'Banyak Angrem',
+      arti:    'Angsa Mengeram (Jawa)',
+      bintang: '18 bintang utama',
+      jarak:   '550 thn cahaya (Antares)',
+      fakta:   'Bentuk melengkung Scorpius diinterpretasikan masyarakat agraris sebagai angsa yang sedang mengerami telurnya.',
+      link:    'https://www.dwipanews.com/2020/06/rasi-scorpius-dalam-pranata-mangsa-budaya-jawa?utm_source=chatgpt.com'
+    }
   },
   'obj-orion': {
-    nama:    'Orion',
-    arti:    'Sang Pemburu — mitologi Yunani',
-    bintang: '7 bintang utama',
-    jarak:   '860 thn cahaya (Rigel)',
-    fakta:   'Betelgeuse di bahu Orion adalah kandidat supernova berikutnya di galaksi kita',
-    warna:   '#B0C8FF'
+    warna:   '#B0C8FF',
+    standar: {
+      nama:    'Orion',
+      arti:    'Sang Pemburu — mitologi Yunani',
+      bintang: '7 bintang utama',
+      jarak:   '860 thn cahaya (Rigel)',
+      fakta:   'Betelgeuse di bahu Orion adalah kandidat supernova berikutnya di galaksi kita',
+      link:    'https://noirlab-edu.translate.goog/public/education/constellations/orion/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
+    },
+    nusantara: {
+      nama:    'Waluku',
+      arti:    'Bajak Sawah (Jawa/Pranata Mangsa)',
+      bintang: '7 bintang utama',
+      jarak:   '860 thn cahaya (Rigel)',
+      fakta:   'Kemunculannya di timur pada malam hari menjadi penanda bagi petani bahwa musim hujan akan tiba.',
+      link:    'https://www.detik.com/jogja/budaya/d-7337799/mengenal-lintang-waluku-rasi-bintang-fenomenal-yang-menjadi-pranata-mangsa'
+    }
   },
   'obj-crux': {
-    nama:    'Crux',
-    arti:    'Salib Selatan — dari bahasa Latin',
-    bintang: '4 bintang utama',
-    jarak:   '320 thn cahaya (Acrux)',
-    fakta:   'Digunakan pelaut selama berabad-abad sebagai penunjuk arah Selatan',
-    warna:   '#CCE8FF'
+    warna:   '#CCE8FF',
+    standar: {
+      nama:    'Crux',
+      arti:    'Salib Selatan — dari bahasa Latin',
+      bintang: '4 bintang utama',
+      jarak:   '320 thn cahaya (Acrux)',
+      fakta:   'Digunakan pelaut selama berabad-abad sebagai penunjuk arah Selatan',
+      link:    'https://earthsky-org.translate.goog/constellations/crux-the-southern-cross-jewel-box/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
+    },
+    nusantara: {
+      nama:    'Gubuk Penceng',
+      arti:    'Gubuk Miring (Jawa/Bugis)',
+      bintang: '4 bintang utama',
+      jarak:   '320 thn cahaya (Acrux)',
+      fakta:   'Bentuknya seperti gubuk miring. Digunakan oleh pelaut Bugis-Makassar sebagai penunjuk arah Selatan yang akurat.',
+      link:    'https://ruangangkasa.com/mengamati-rasi-bintang-crux-si-gubug-penceng/?utm_source=chatgpt.com'
+    }
   }
+};
+
+/* -----------------------------------------------------------------
+   DATA ASTROFISIKA BINTANG
+----------------------------------------------------------------- */
+const DATA_BINTANG = {
+  'kaus-australis': { nama: 'Kaus Australis', tipe: 'Bintang Raksasa Biru-Putih (B9)', suhu: '9.200 K', jarak: '143 Tahun Cahaya', massa: '3.5 x Matahari' },
+  'nunki': { nama: 'Nunki', tipe: 'Bintang Deret Utama Biru (B2)', suhu: '18.890 K', jarak: '228 Tahun Cahaya', massa: '7.8 x Matahari' },
+  'betelgeuse': { nama: 'Betelgeuse', tipe: 'Maha-Raksasa Merah (M1-M2)', suhu: '3.500 K', jarak: '642 Tahun Cahaya', massa: '16.5 x Matahari' },
+  'rigel': { nama: 'Rigel', tipe: 'Maha-Raksasa Biru-Putih (B8)', suhu: '12.100 K', jarak: '860 Tahun Cahaya', massa: '21 x Matahari' },
+  'antares': { nama: 'Antares', tipe: 'Maha-Raksasa Merah (M1)', suhu: '3.400 K', jarak: '550 Tahun Cahaya', massa: '12 x Matahari' },
+  'acrux': { nama: 'Acrux', tipe: 'Sistem Bintang Ganda Biru (B0)', suhu: '28.000 K', jarak: '320 Tahun Cahaya', massa: '14 x Matahari' },
+  'gacrux': { nama: 'Gacrux', tipe: 'Raksasa Merah (M3)', suhu: '3.689 K', jarak: '88 Tahun Cahaya', massa: '1.5 x Matahari' }
 };
 
 /* -----------------------------------------------------------------
@@ -85,12 +142,17 @@ const SEMUA_RASI = ['obj-sagittarius', 'obj-orion', 'obj-scorpius', 'obj-crux'];
 ----------------------------------------------------------------- */
 function tampilkanEduCard(idRasi) {
   const card = document.getElementById('edu-card');
-  const data = DATA_EDUKASI[idRasi];
-  if (!card || !data) return;
+  const dataRef = DATA_EDUKASI[idRasi];
+  if (!card || !dataRef) return;
+
+  const mode = window.isNusantaraMode ? 'nusantara' : 'standar';
+  const data = dataRef[mode];
+  const warna = dataRef.warna;
 
   // Isi konten
   card.innerHTML = `
-    <div class="edu-nama" style="color: ${data.warna}">${data.nama}</div>
+    <div class="edu-drag-handle"></div>
+    <div class="edu-nama" style="color: ${warna}">${data.nama}</div>
     <div class="edu-arti">${data.arti}</div>
     <div class="edu-row">
       <div class="edu-item">
@@ -102,11 +164,14 @@ function tampilkanEduCard(idRasi) {
         <span class="edu-item-value">${data.jarak}</span>
       </div>
     </div>
-    <div class="edu-fakta">${data.fakta}</div>
+    <div class="edu-extended-content">
+      <div class="edu-fakta">${data.fakta}</div>
+      <a href="${data.link || '#'}" target="_blank" class="edu-btn-link">Baca Artikel Selengkapnya ↗</a>
+    </div>
   `;
 
   // Warna border sesuai rasi
-  card.style.borderColor = data.warna + '44';
+  card.style.borderColor = warna + '44';
 
   // Fade in
   card.classList.remove('visible');

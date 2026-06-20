@@ -36,6 +36,9 @@ function sembunyikanLanding() {
     
     const btnNv = document.getElementById('btn-nightvision');
     if (btnNv) btnNv.classList.add('visible');
+    
+    const btnNusantara = document.getElementById('btn-nusantara');
+    if (btnNusantara) btnNusantara.classList.add('visible');
   });
 }
 

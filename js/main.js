@@ -157,7 +157,7 @@ function updateGazeTracker() {
   const heading = cameraEl.getAttribute('rotation').y || 0;
   const radarRing = document.getElementById('radar-ring');
   if (radarRing) {
-    radarRing.style.transform = `rotate(${-heading}deg)`;
+    radarRing.style.transform = `rotate(${heading}deg)`;
   }
 
   const camera3D = cameraEl.object3D;
@@ -232,14 +232,89 @@ function initNightVision() {
 }
 
 /* -----------------------------------------------------------------
+   Nusantara Mode — Toggle Etnoastronomi
+----------------------------------------------------------------- */
+window.isNusantaraMode = false;
+
+function initNusantaraMode() {
+  const btn = document.getElementById('btn-nusantara');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    window.isNusantaraMode = !window.isNusantaraMode;
+    btn.classList.toggle('active', window.isNusantaraMode);
+    
+    // Refresh edu-card if one is active
+    if (typeof currentActiveConstId !== 'undefined' && currentActiveConstId) {
+      if (typeof tampilkanEduCard === 'function') {
+        tampilkanEduCard(currentActiveConstId);
+      }
+    }
+  });
+}
+
+/* -----------------------------------------------------------------
+   Interactive Stars — Tampilkan pop-up data astrofisika
+----------------------------------------------------------------- */
+function initInteractiveStars() {
+  const modal = document.getElementById('star-modal');
+  const btnClose = document.getElementById('btn-close-star');
+
+  if (btnClose && modal) {
+    btnClose.addEventListener('click', () => {
+      modal.classList.remove('visible');
+    });
+  }
+
+  // A-Frame event listener for clicks
+  const sceneEl = document.querySelector('a-scene');
+  if (sceneEl) {
+    sceneEl.addEventListener('click', (e) => {
+      if (!e.detail || !e.detail.intersectedEl) return;
+      const el = e.detail.intersectedEl;
+      if (el && el.classList.contains('clickable')) {
+        const starId = el.getAttribute('data-star');
+        if (starId && typeof DATA_BINTANG !== 'undefined' && DATA_BINTANG[starId]) {
+          const data = DATA_BINTANG[starId];
+          document.getElementById('sm-nama').textContent = data.nama;
+          document.getElementById('sm-tipe').textContent = data.tipe;
+          document.getElementById('sm-suhu').textContent = data.suhu;
+          document.getElementById('sm-massa').textContent = data.massa;
+          document.getElementById('sm-jarak').textContent = data.jarak;
+          
+          modal.classList.add('visible');
+        }
+      }
+    });
+  }
+}
+
+/* -----------------------------------------------------------------
+   Bottom Sheet (Edu Card) Interaction
+----------------------------------------------------------------- */
+function initEduCardInteraction() {
+  const card = document.getElementById('edu-card');
+  if (card) {
+    card.addEventListener('click', (e) => {
+      // Jangan trigger expand kalau yang di-klik adalah tombol link artikel
+      if (e.target.tagName.toLowerCase() === 'a' || e.target.closest('.edu-btn-link')) return;
+      card.classList.toggle('expanded');
+    });
+  }
+}
+
+/* -----------------------------------------------------------------
    Init
 ----------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initLanding();
   initNightVision();
+  initNusantaraMode();
+  initEduCardInteraction();
 });
 
 document.querySelector('a-scene').addEventListener('loaded', () => {
   terapkanMusimLangit();
   updateGazeTracker();
+  initInteractiveStars();
 });
