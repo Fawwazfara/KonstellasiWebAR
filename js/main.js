@@ -3,6 +3,8 @@
    untuk debug: pastikan bintang muncul dulu
 ================================================================= */
 
+window.cameraOffset = 0;
+
 /* -----------------------------------------------------------------
    tampilkanKalibrasiAndroid()
    Kompas SVG fungsional — jarum berputar sesuai sensor
@@ -117,6 +119,16 @@ function tampilkanKalibrasiAndroid() {
       window._alphaUtara = alphaSnapshot || 0;
       console.log(`[Compass] Alpha saat Utara: ${window._alphaUtara.toFixed(1)}°`);
 
+      const cameraEl = document.querySelector('a-camera');
+      if (cameraEl) {
+        window.cameraOffset = cameraEl.getAttribute('rotation').y || 0;
+        const skyWrapper = document.getElementById('sky-wrapper');
+        if (skyWrapper) {
+          skyWrapper.setAttribute('rotation', `0 ${window.cameraOffset} 0`);
+        }
+        console.log(`[Compass] Kamera di-offset sebesar ${window.cameraOffset.toFixed(1)}°`);
+      }
+
       overlay.style.transition = 'opacity 0.5s ease';
       overlay.style.opacity    = '0';
       setTimeout(() => overlay.remove(), 550);
@@ -154,7 +166,8 @@ function updateGazeTracker() {
   }
 
   // Putar Radar HUD sesuai rotasi Y kamera
-  const heading = cameraEl.getAttribute('rotation').y || 0;
+  const rawHeading = cameraEl.getAttribute('rotation').y || 0;
+  const heading = rawHeading - window.cameraOffset;
   const radarRing = document.getElementById('radar-ring');
   if (radarRing) {
     radarRing.style.transform = `rotate(${heading}deg)`;
