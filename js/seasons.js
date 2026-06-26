@@ -23,11 +23,11 @@ const DATA_EDUKASI = {
       link:    'https://noirlab-edu.translate.goog/public/education/constellations/sagittarius/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
     },
     nusantara: {
-      nama:    'Wulan Jarit',
-      arti:    'Pemanah — Mitologi Hindu-Jawa',
+      nama:    'Danuh (Al-Qaus)',
+      arti:    'Busur Panah (Sanskerta / Arab)',
       bintang: '8 bintang utama',
       jarak:   '143 thn cahaya',
-      fakta:   'Digunakan sebagai penanda arah pusat galaksi Bima Sakti (Milky Way).',
+      fakta:   'Nusantara menyerap istilah "Danuh" (Sanskerta) dan "Al-Qaus" (Arab) untuk menyebut rasi ini dalam sistem penanggalan tradisional.',
       link:    'https://www.cangkeman.id/2023/03/mengenal-rasi-bintang-dalam-astronomi.html?utm_source=chatgpt.com'
     }
   },
